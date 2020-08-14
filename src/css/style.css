@@ -1,0 +1,172 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(39, 39, 39);
+}
+
+#frame {
+  margin: auto;
+  padding: 40px 10px;
+  background-color: gray;
+  border-radius: 40px;
+  width: 80%;
+}
+
+#container {
+  box-sizing: border-box;
+  background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
+  background-color: white;
+	background-size: 20px 20px;
+	background-position: center center;
+
+  width: 100%;
+  min-height: 500px;
+  margin: auto;
+  border: 2px black solid;
+
+  padding: 1rem;
+}
+
+#add-button, .form-button, .confirm-button {
+  display: block;
+  border: 1px solid black;
+  border-radius: 12px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#add-button-box {
+  height: 80px;
+}
+
+#add-button {
+  background-color: white;
+  width: 15%;
+  text-align: center;
+  padding: 1rem 1.5rem;
+  float: right;
+}
+
+#tickets-list-box {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 400px;
+  background-color: white;
+  border: 1px black solid;
+}
+
+.ticket {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px black solid;
+  padding: 1rem 2rem;
+}
+
+.ticket-button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px black solid;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.ticket-description {
+  width: 65%;
+}
+
+.ticket-short, .ticket-complete, .ticket-time{
+  padding: .5rem 1rem;
+}
+
+.checked, .ticket-edit, .ticket-delete {
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  background-position: center;
+}
+
+.checked {
+  background-image: url(/src/img/check.png);
+}
+
+.ticket-edit {
+  background-image: url(/src/img/pencil.png);
+}
+
+.ticket-delete {
+  background-image: url(/src/img/cross.png);
+}
+
+#ticket-form-box, #confirm-wrapper {
+  width: 50%;
+  height: 380px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin: auto;
+  position: absolute;
+  top: 130px;
+  left: 25%;
+  overflow: hidden;
+}
+
+#confirm-wrapper {
+  height: 240px;
+}
+
+#ticket-form, #confirm-delete-box {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+}
+
+#form-header, #confirm-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#confirm-text {
+  padding: 1.5rem 2rem;
+}
+
+.form-label, .form-textarea {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  cursor: pointer;
+}
+
+.form-textarea {
+  font-family: inherit;
+  padding: .5rem;
+  overflow: hidden;
+  resize: none;
+}
+
+#complete-description-input {
+  height: 4rem;
+}
+
+#form-buttons-box, #confirm-buttons-box {
+  display: flex;
+  justify-content: right;
+  padding-top: .5rem;
+}
+
+.form-button, .confirm-button {
+  margin-right: .5rem;
+  padding: .5rem .8rem;
+}
+
+.form-button:last-child, .confirm-button:last-child {
+  margin-right: 0;
+}
+
+.hidden {
+  display: none;
+}
