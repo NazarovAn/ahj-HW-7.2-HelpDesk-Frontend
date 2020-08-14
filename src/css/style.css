@@ -90,15 +90,15 @@ body {
 }
 
 .checked {
-  background-image: url(/src/img/check.png);
+  background-image: url(../assets/check.png);
 }
 
 .ticket-edit {
-  background-image: url(/src/img/pencil.png);
+  background-image: url(../assets/pencil.png);
 }
 
 .ticket-delete {
-  background-image: url(/src/img/cross.png);
+  background-image: url(../assets/cross.png);
 }
 
 #ticket-form-box, #confirm-wrapper {
