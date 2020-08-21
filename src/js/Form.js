@@ -5,6 +5,7 @@ export default class Form {
     this.formConfirm = document.querySelector('#form-confirm');
     this.formShortDes = document.querySelector('#short-description-input');
     this.formCompleteDes = document.querySelector('#complete-description-input');
+    this.editedTicket = null;
   }
 
   getFormData() {
@@ -30,5 +31,29 @@ export default class Form {
   fillFormInputs(obj) {
     this.formShortDes.value = obj.name;
     this.formCompleteDes.value = obj.description;
+  }
+
+  writeEditedTicket(obj) {
+    this.editedTicket = obj;
+  }
+
+  async editTicket() {
+    const url = 'http://ahj-hw-7-1.herokuapp.com/?method=editTicket';
+    // const localUrl = 'http://localhost:7070/?method=editTicket';
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        name: this.formShortDes.value,
+        description: this.formCompleteDes.value,
+        id: this.editedTicket.ticketId,
+      }),
+    });
+
+    const result = await response.json();
+    return result;
+  }
+
+  clearEditedTicket() {
+    this.editedTicket = null;
   }
 }

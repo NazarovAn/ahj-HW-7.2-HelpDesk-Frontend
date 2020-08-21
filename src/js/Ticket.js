@@ -10,6 +10,8 @@ export default class Ticket {
     this.editButton = null;
     this.checkButton = null;
     this.shortDescriptionDiv = null;
+    this.fullDescriptionDiv = null;
+    this.status = false;
   }
 
   async init() {
@@ -23,10 +25,19 @@ export default class Ticket {
     this.getCreatedTime(object);
     this.createTicketDiv(object);
     this.queryDivChildren();
+    this.checkTicketStatus(object);
+  }
+
+  checkTicketStatus(obj) {
+    if (obj.status === true) {
+      this.checkButton.classList.add('checked');
+    }
   }
 
   async createRequestTicket(formElement) {
-    const response = await fetch('https://ahj-hw-7-1.herokuapp.com/?method=createTicket', {
+    const url = 'https://ahj-hw-7-1.herokuapp.com/?method=createTicket';
+    // const localUrl = 'http://localhost:7070/?method=createTicket';
+    const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         name: formElement.shortDescription.value,
@@ -38,7 +49,16 @@ export default class Ticket {
   }
 
   async requestTicketByID() {
-    const response = await fetch(`https://ahj-hw-7-1.herokuapp.com/?method=ticketById&ticketId=${this.ticketId}`);
+    const url = `http://ahj-hw-7-1.herokuapp.com/?method=ticketById&ticketId=${this.ticketId}`;
+    // const localUrl = `http://localhost:7070/?method=ticketById&ticketId=${this.ticketId}`;
+    const response = await fetch(url);
+    return response.json();
+  }
+
+  async checkTicket() {
+    const url = `http://ahj-hw-7-1.herokuapp.com/?method=checkTicket&ticketId=${this.ticketId}`;
+    // const localUrl = `http://localhost:7070/?method=checkTicket&ticketId=${this.ticketId}`;
+    const response = await fetch(url);
     return response.json();
   }
 
@@ -81,14 +101,28 @@ export default class Ticket {
     this.shortDescriptionDiv = this.ticketDiv.querySelector('.ticket-short');
   }
 
+  checkFullDescription() {
+    const fullDescription = this.ticketDiv.querySelector('.ticket-complete');
+    if (fullDescription) {
+      this.fullDescriptionDiv = fullDescription;
+      return fullDescription;
+    }
+    return null;
+  }
+
   addFullDescription(text) {
     const descriptionBox = this.ticketDiv.querySelector('.ticket-description');
-    if (descriptionBox.querySelector('.ticket-complete')) {
+    if (!this.checkFullDescription) {
       return;
     }
     const description = document.createElement('div');
     description.classList.add('ticket-complete');
     description.innerText = text;
     descriptionBox.insertAdjacentElement('beforeend', description);
+  }
+
+  removeFullDescription() {
+    this.fullDescriptionDiv.parentElement.removeChild(this.fullDescriptionDiv);
+    this.fullDescriptionDiv = null;
   }
 }
